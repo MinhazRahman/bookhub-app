@@ -1,4 +1,5 @@
 <p>book-list works!</p>
 <p *ngFor="let tempBook of books">
-    {{tempBook.name}} : {{tempBook.unitPrice | currency: 'USD'}}
+  <img src="{{ tempBook.imageUrl }}" height="50" /> : {{ tempBook.name }} :
+  {{ tempBook.unitPrice | currency : "USD" }}
 </p>

@@ -1,5 +1,23 @@
-<p>book-list works!</p>
-<p *ngFor="let tempBook of books">
-  <img src="{{ tempBook.imageUrl }}" height="50" /> : {{ tempBook.name }} :
-  {{ tempBook.unitPrice | currency : "USD" }}
-</p>
+<!-- MAIN CONTENT-->
+<div class="main-content">
+  <div class="section-content section-content-p30">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- loop over the list of books-->
+        <div *ngFor="let tempBook of books" class="col-md-3">
+          <div class="product-box">
+            <img
+              src="{{ tempBook.imageUrl }}"
+              height="50"
+              class="img-fluid img-responsive"
+            />
+            <h1>{{ tempBook.name }}</h1>
+            <h2>by {{ tempBook.author }}</h2>
+            <div class="price">{{ tempBook.unitPrice | currency : "USD" }}</div>
+            <a href="#" class="primary-btn">Add to cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

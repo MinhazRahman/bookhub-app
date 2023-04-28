@@ -373,7 +373,7 @@ input.au-input.au-input-xl {
 }
 
 .navbar-sidebar {
-    padding: 35px;
+    padding: 25px;
     padding-bottom: 0
 }
 
@@ -818,6 +818,10 @@ a.primary-btn:hover {
     font-weight: bold;
 }
 
+a:link {
+    text-decoration: none;
+}
+
 /* 
  * ----------------------------
  * Footer section
@@ -837,7 +841,7 @@ footer {
 
 footer li a {
     color: #313131;
-    font-weight: 500
+    font-weight: 500;
 }
 
 footer ul li {

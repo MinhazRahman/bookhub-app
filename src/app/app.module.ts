@@ -5,16 +5,30 @@ import { AppComponent } from './app.component';
 import { BookListComponent } from './components/book-list/book-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BookService } from './services/book.service';
+import { Routes, RouterModule } from '@angular/router'; // CLI imports router
 
+// sets up routes constant where you define your routes
+// when path matches it creates new instance of component
+const routes: Routes = [
+  { path: 'category:categoryId', component: BookListComponent },
+  { path: 'category', component: BookListComponent },
+  { path: 'books', component: BookListComponent },
+  { path: '', redirectTo: '/books', pathMatch: 'full' },
+  { path: '**', redirectTo: '/books', pathMatch: 'full' },
+]; 
+
+// configures NgModule imports and exports
 @NgModule({
   declarations: [
     AppComponent,
     BookListComponent
   ],
   imports: [
+    RouterModule.forRoot(routes),
     BrowserModule,
     HttpClientModule
   ],
+  exports: [RouterModule],
   providers: [BookService],
   bootstrap: [AppComponent]
 })

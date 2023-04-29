@@ -38,6 +38,12 @@ export class BookService {
       .get<GetResponseBooks>(searchUrl)
       .pipe(map((response) => response.content));
   }
+
+  getBook(theBookId: number): Observable<Book> {
+    // build the url based on bookId
+    const bookUrl = `${this.baseUrl}/${theBookId}`;
+    return this.httpClient.get<Book>(bookUrl);
+  }
 }
 
 // extract the JSON array from the Spring data REST json response

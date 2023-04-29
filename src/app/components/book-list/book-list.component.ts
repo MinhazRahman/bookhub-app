@@ -13,6 +13,8 @@ export class BookListComponent implements OnInit {
   books: Book[] = [];
   currentCategoryId: number = 1;
   currentCategoryName: string = '';
+  searchMode: boolean = false;
+  searchKeyword: string = '';
 
   // inject BookService, ActivatedRoute
   constructor(
@@ -27,6 +29,28 @@ export class BookListComponent implements OnInit {
     });
   }
   listBooks() {
+    // check if the activated route has a parameter 'keyword'
+    // 'keyword' is passed in from SearchComponent
+    this.searchMode = this.route.snapshot.paramMap.has('keyword');
+    if (this.searchMode) {
+      this.handleSearchBooks();
+    } else {
+      this.handleListBooks();
+    }
+  }
+
+  handleSearchBooks() {
+    // get the 'keyword' from the search route
+    const theKeyword: string = this.route.snapshot.paramMap.get('keyword')!;
+    this.searchKeyword = this.route.snapshot.paramMap.get('keyword')!;
+
+    // search for the books using the given keyword
+    this.bookService.searchBooks(theKeyword).subscribe((data) => {
+      this.books = data;
+    });
+  }
+
+  handleListBooks() {
     // use activated route to track the 'categoryId' parameter, check if 'categoryId' is available
     const hasCategoryId: boolean = this.route.snapshot.paramMap.has('id');
 

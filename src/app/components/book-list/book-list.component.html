@@ -1,8 +1,16 @@
 <!-- MAIN CONTENT-->
 <div class="main-content">
   <div class="section-content section-content-p30">
-     <h4>Category: {{ currentCategoryName }}</h4>
-        <hr>
+    <!-- if category name is not provided then do not show the message, Category: category-name -->
+    <h4 *ngIf="currentCategoryName.length > 0">
+      Category: {{ currentCategoryName }}
+    </h4>
+
+    <!-- if search keyword is not provided then do not show the message, Category: category-name -->
+    <h4 *ngIf="searchKeyword.length > 0">
+      Showing Results for : "{{ searchKeyword }}"
+    </h4>
+    <hr />
     <div class="container-fluid">
       <div class="row">
         <!-- loop over the list of books-->
@@ -18,6 +26,15 @@
             <div class="price">{{ tempBook.unitPrice | currency : "USD" }}</div>
             <a href="#" class="primary-btn">Add to cart</a>
           </div>
+        </div>
+
+        <!-- if books is empty then display not found message -->
+        <div
+          *ngIf="books?.length == 0"
+          class="alert alert-warning col-md-12"
+          role="alert"
+        >
+          No Books found
         </div>
       </div>
     </div>

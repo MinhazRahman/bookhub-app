@@ -1,6 +1,7 @@
 export class Book {
   // constructor with parameter properties
   constructor(
+    public id: number,
     public stockKeepingUnit: string,
     public name: string,
     public author: string,

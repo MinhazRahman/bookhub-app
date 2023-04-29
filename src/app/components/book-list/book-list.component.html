@@ -16,12 +16,17 @@
         <!-- loop over the list of books-->
         <div *ngFor="let tempBook of books" class="col-md-3">
           <div class="product-box">
-            <img
-              src="{{ tempBook.imageUrl }}"
-              height="50"
-              class="img-fluid img-responsive"
-            />
-            <h1>{{ tempBook.name }}</h1>
+            <a routerLink="/books/{{ tempBook.id }}">
+              <img
+                src="{{ tempBook.imageUrl }}"
+                height="50"
+                class="img-fluid img-responsive"
+              />
+            </a>
+
+            <a routerLink="/books/{{ tempBook.id }}">
+              <h1>{{ tempBook.name }}</h1>
+            </a>
             <h2>by {{ tempBook.author }}</h2>
             <div class="price">{{ tempBook.unitPrice | currency : "USD" }}</div>
             <a href="#" class="primary-btn">Add to cart</a>

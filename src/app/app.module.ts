@@ -11,6 +11,7 @@ import { BookCategoryMenuComponent } from './components/book-category-menu/book-
 // sets up routes constant where you define your routes
 // when path matches it creates new instance of component
 const routes: Routes = [
+  { path: 'search/:keyword', component: BookListComponent },
   { path: 'category/:id/:name', component: BookListComponent },
   { path: 'category', component: BookListComponent },
   { path: 'books', component: BookListComponent },

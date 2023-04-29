@@ -597,6 +597,10 @@ input.au-input.au-input-xl {
     color: #585858
 }
 
+.product-box a h1:hover {
+    color: #0da8e4
+}
+
 /* 
  * ----------------------------
  * Shopping Cart Checkout

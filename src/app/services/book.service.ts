@@ -17,15 +17,26 @@ export class BookService {
   getBookList(theCategoryId: number): Observable<Book[]> {
     // build the URL based on categoryId
     const searchUrl = `${this.baseUrl}/findByCategoryId/${theCategoryId}`;
-    return this.httpClient
-      .get<GetResponseBooks>(searchUrl)
-      .pipe(map((response) => response.content));
+    return this.getBooks(searchUrl);
   }
 
   // get the list of categories from the HTTP response
   // Maps the JSON data from Spring Data REST to BookCategory array
   getBookCategories(): Observable<BookCategory[]> {
     return this.httpClient.get<BookCategory[]>(this.categoryUrl);
+  }
+
+  searchBooks(theKeyword: string): Observable<Book[]> {
+    // build the URL based on categoryId
+    const searchUrl = `${this.baseUrl}/findByNameContaining/${theKeyword}`;
+    return this.getBooks(searchUrl);
+  }
+
+  // extract Books from JSON response
+  private getBooks(searchUrl: string): Observable<Book[]> {
+    return this.httpClient
+      .get<GetResponseBooks>(searchUrl)
+      .pipe(map((response) => response.content));
   }
 }
 

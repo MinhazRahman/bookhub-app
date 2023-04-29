@@ -12,6 +12,7 @@ export class BookListComponent implements OnInit {
   // create books property
   books: Book[] = [];
   currentCategoryId: number = 1;
+  currentCategoryName: string = '';
 
   // inject BookService, ActivatedRoute
   constructor(
@@ -33,9 +34,13 @@ export class BookListComponent implements OnInit {
     if (hasCategoryId) {
       // user null assertion operator '!' is to tell the compiler that the object is not null
       this.currentCategoryId = +this.route.snapshot.paramMap.get('id')!;
+
+      // get the "name" param string
+      this.currentCategoryName = this.route.snapshot.paramMap.get('name')!;
     } else {
       // 'categoryId' is not available and make the default category id to 1
       this.currentCategoryId = 1;
+      this.currentCategoryName = 'Programming';
     }
 
     // get the list of books for the given 'categoryId'

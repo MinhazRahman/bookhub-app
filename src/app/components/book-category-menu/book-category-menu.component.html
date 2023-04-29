@@ -4,7 +4,7 @@
     <ul class="list-unstyled navbar-list">
         <!--Loop over categories and build the links dynamically -->
       <li *ngFor="let tempBookCategory of bookCategories">
-        <a routerLink="/category/{{tempBookCategory.id}}" routerLinkActive="active-link"
+        <a routerLink="/category/{{tempBookCategory.id}}/{{tempBookCategory.categoryName }}" routerLinkActive="active-link"
           >{{tempBookCategory.categoryName}}</a
         >
     </ul>

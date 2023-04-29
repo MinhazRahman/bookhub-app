@@ -5,7 +5,8 @@ import { AppComponent } from './app.component';
 import { BookListComponent } from './components/book-list/book-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BookService } from './services/book.service';
-import { Routes, RouterModule } from '@angular/router'; // CLI imports router
+import { Routes, RouterModule } from '@angular/router';
+import { BookCategoryMenuComponent } from './components/book-category-menu/book-category-menu.component'; // CLI imports router
 
 // sets up routes constant where you define your routes
 // when path matches it creates new instance of component
@@ -19,7 +20,7 @@ const routes: Routes = [
 
 // configures NgModule imports and exports
 @NgModule({
-  declarations: [AppComponent, BookListComponent],
+  declarations: [AppComponent, BookListComponent, BookCategoryMenuComponent],
   imports: [RouterModule.forRoot(routes), BrowserModule, HttpClientModule],
   providers: [BookService],
   bootstrap: [AppComponent],

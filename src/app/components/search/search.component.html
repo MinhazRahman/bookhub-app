@@ -1,10 +1,12 @@
-<form class="form-header" onsubmit="return false;" method="GET">
+<div class="form-header">
   <input
-    class="au-input au-input-xl"
+    #searchBoxInput
     type="text"
-    name="search"
-    ç
+    class="au-input au-input-xl"
     placeholder="Search for books ..."
+    (keyup.enter)="searchBook(searchBoxInput.value)"
   />
-  <button class="au-btn-submit" type="submit">Search</button>
-</form>
+  <button (click)="searchBook(searchBoxInput.value)" class="au-btn-submit">
+    Search
+  </button>
+</div>

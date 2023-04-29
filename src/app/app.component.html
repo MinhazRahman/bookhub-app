@@ -11,38 +11,9 @@
         />
       </a>
     </div>
-    <div class="menu-sidebar-content js-scrollbar1">
-      <!-- This nav gives you links to click, which tells the router which route to use (defined in the routes constant in  AppRoutingModule) -->
-      <nav class="navbar-sidebar">
-        <ul class="list-unstyled navbar-list">
-          <li>
-            <a routerLink="/category/1" routerLinkActive="active-link"
-              >Programming</a
-            >
-          </li>
-          <li>
-            <a routerLink="/category/2" routerLinkActive="active-link"
-              >Data Analysis</a
-            >
-          </li>
-          <li>
-            <a routerLink="/category/3" routerLinkActive="active-link"
-              >Web Development</a
-            >
-          </li>
-          <li>
-            <a routerLink="/category/4" routerLinkActive="active-link"
-              >Cloud & Networking</a
-            >
-          </li>
-          <li>
-            <a routerLink="/category/5" routerLinkActive="active-link"
-              >Security</a
-            >
-          </li>
-        </ul>
-      </nav>
-    </div>
+    <!--Dynamic side menubar: list of book categories -->
+    <app-book-category-menu></app-book-category-menu>
+    
   </aside>
   <!-- END MENU SIDEBAR-->
 

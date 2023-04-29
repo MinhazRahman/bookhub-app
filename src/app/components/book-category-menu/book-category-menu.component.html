@@ -1,1 +1,12 @@
-<p>book-category-menu works!</p>
+<div class="menu-sidebar-content js-scrollbar1">
+  <!-- This nav gives you links to click, which tells the router which route to use (defined in the routes constant in  AppRoutingModule) -->
+  <nav class="navbar-sidebar">
+    <ul class="list-unstyled navbar-list">
+        <!--Loop over categories and build the links dynamically -->
+      <li *ngFor="let tempBookCategory of bookCategories">
+        <a routerLink="/category/{{tempBookCategory.id}}" routerLinkActive="active-link"
+          >{{tempBookCategory.categoryName}}</a
+        >
+    </ul>
+  </nav>
+</div>

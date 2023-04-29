@@ -1,5 +1,14 @@
 <div class="detail-section">
   <div class="container-fluid">
-    <p>book-details works! {{ book.name }}</p>
+    <img src="{{ book.imageUrl }}" class="detail-img" />
+    <h3>{{ book.name }}</h3>
+    <div class="price">{{ book.unitPrice | currency : "USD" }}</div>
+
+    <a href="#" class="primary-btn">Add to cart</a>
+    <hr />
+    <h4>Description</h4>
+    <p>{{ book.description }}</p>
+
+    <a routerLink="/books" class="mt-5">Back to Books</a>
   </div>
 </div>

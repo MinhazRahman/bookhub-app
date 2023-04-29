@@ -785,7 +785,12 @@ table.table.table-bordered th {
 }
 
 .detail-section {
-    margin-top: 60px
+    padding: 25px;
+    margin-top: 75px
+}
+
+.detail-img{
+    width: 30%;
 }
 
 /**/

@@ -17,6 +17,7 @@ import { ShoppingCartDetailsComponent } from './components/shopping-cart-details
 // sets up routes constant where you define your routes
 // when path matches it creates new instance of component
 const routes: Routes = [
+  { path: 'shopping-cart-details', component: ShoppingCartDetailsComponent },
   { path: 'books/:id', component: BookDetailsComponent },
   { path: 'search/:keyword', component: BookListComponent },
   { path: 'category/:id/:name', component: BookListComponent },

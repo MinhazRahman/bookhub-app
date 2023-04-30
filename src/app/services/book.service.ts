@@ -49,4 +49,8 @@ export class BookService {
 // extract the JSON array from the Spring data REST json response
 interface GetResponseBooks {
   content: Book[];
+  totalPages: number;
+  totalElements: number;
+  size: number;
+  number: number;
 }

@@ -10,6 +10,8 @@ import { BookCategoryMenuComponent } from './components/book-category-menu/book-
 import { SearchComponent } from './components/search/search.component';
 import { BookDetailsComponent } from './components/book-details/book-details.component'; // CLI imports router
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 // sets up routes constant where you define your routes
 // when path matches it creates new instance of component
 const routes: Routes = [
@@ -31,7 +33,12 @@ const routes: Routes = [
     SearchComponent,
     BookDetailsComponent,
   ],
-  imports: [RouterModule.forRoot(routes), BrowserModule, HttpClientModule],
+  imports: [
+    RouterModule.forRoot(routes),
+    BrowserModule,
+    HttpClientModule,
+    NgbModule,
+  ],
   providers: [BookService],
   bootstrap: [AppComponent],
 })

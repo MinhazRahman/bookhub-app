@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Book } from 'src/app/common/book';
+import { ShoppingCartItem } from 'src/app/common/shopping-cart-item';
 import { BookService } from 'src/app/services/book.service';
+import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 
 @Component({
   selector: 'app-book-list',
@@ -26,7 +28,8 @@ export class BookListComponent implements OnInit {
   // inject BookService, ActivatedRoute
   constructor(
     private bookService: BookService,
-    private route: ActivatedRoute // current active route that loaded the component, getting route info
+    private route: ActivatedRoute, // current active route that loaded the component, getting route info
+    private shoppingCartService: ShoppingCartService
   ) {}
 
   // Update the ngOnInit() method to access the ActivatedRoute
@@ -129,6 +132,9 @@ export class BookListComponent implements OnInit {
 
   addToCart(theBook: Book) {
     console.log(`Adding Book to cart.. ${theBook.name}: ${theBook.unitPrice}`);
-    // Add actual code later....
+    // create ShoppingCartItem object
+    const theShoppingCartItem = new ShoppingCartItem(theBook);
+    // call the addToShoppingCart() method to add item to the shopping cart
+    this.shoppingCartService.addToShoppingCart(theShoppingCartItem);
   }
 }

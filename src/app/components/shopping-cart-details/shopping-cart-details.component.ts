@@ -41,4 +41,9 @@ export class ShoppingCartDetailsComponent implements OnInit {
   incrementQuantity(theShoppingCartItem: ShoppingCartItem) {
     this.shoppingCartService.addToShoppingCart(theShoppingCartItem);
   }
+
+  // decrement the quantity of the item when user clicks on the decrement button on the shopping cart
+  decrementQuantity(theShoppingCartItem: ShoppingCartItem) {
+    this.shoppingCartService.decrementQuantity(theShoppingCartItem);
+  }
 }

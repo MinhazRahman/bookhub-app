@@ -16,6 +16,7 @@ export class BookListComponent implements OnInit {
   currentCategoryName: string = '';
   searchMode: boolean = false;
   searchKeyword: string = '';
+  previousKeyword: string = '';
 
   // add properties for pagination
   thePageNumber: number = 1;
@@ -50,10 +51,21 @@ export class BookListComponent implements OnInit {
     const theKeyword: string = this.route.snapshot.paramMap.get('keyword')!;
     this.searchKeyword = this.route.snapshot.paramMap.get('keyword')!;
 
+    // check if we have a different keyword than the previous one
+    // Angular will reuse a component if it is currently being viewed
+
+    // if we have a different keyword than the previous one
+    // then set thePageNumber back to 1
+    if (this.previousKeyword != theKeyword) {
+      this.thePageNumber = 1;
+    }
+
+    this.previousKeyword = theKeyword;
+
     // search for the books using the given keyword
-    this.bookService.searchBooks(theKeyword).subscribe((data) => {
-      this.books = data;
-    });
+    this.bookService
+      .searchBooksPaginate(this.thePageNumber - 1, this.thePageSize, theKeyword)
+      .subscribe(this.processResult());
   }
 
   handleListBooks() {
@@ -75,7 +87,6 @@ export class BookListComponent implements OnInit {
 
     // check if we have a different category than the previous one
     // Angular will reuse a component if it is currently being viewed
-    //
 
     // if we have a different category id than the previous one
     // then set thePageNumber back to 1
@@ -95,11 +106,7 @@ export class BookListComponent implements OnInit {
         this.thePageSize,
         this.currentCategoryId
       )
-      .subscribe((data) => {
-        this.books = data.content;
-        (this.thePageNumber = data.number + 1), (this.thePageSize = data.size);
-        this.theTotalElements = data.totalElements;
-      });
+      .subscribe(this.processResult());
   }
 
   // update page size when users select from the drop down
@@ -109,5 +116,14 @@ export class BookListComponent implements OnInit {
     // reset the page number to 1
     this.thePageNumber = 1;
     this.listBooks();
+  }
+
+  // process the JSON response, extract the values from the JSON response
+  processResult() {
+    return (data: any) => {
+      this.books = data.content;
+      (this.thePageNumber = data.number + 1), (this.thePageSize = data.size);
+      this.theTotalElements = data.totalElements;
+    };
   }
 }

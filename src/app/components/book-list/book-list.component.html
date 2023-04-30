@@ -29,7 +29,8 @@
             </a>
             <h2>by {{ tempBook.author }}</h2>
             <div class="price">{{ tempBook.unitPrice | currency : "USD" }}</div>
-            <a href="#" class="primary-btn">Add to cart</a>
+            
+            <button (click)="addToCart(tempBook)" class="btn btn-primary btn-sm">Add to cart</button>
           </div>
         </div>
 

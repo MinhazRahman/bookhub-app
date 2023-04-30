@@ -27,7 +27,7 @@ export class ShoppingCartService {
     if (this.shoppingCartItems.length > 0) {
       // find the item in the shopping cart based on item id
       for (let tempShoppingCartItem of this.shoppingCartItems) {
-        if (tempShoppingCartItem.id == theShoppingCartItem.id) {
+        if (tempShoppingCartItem.id === theShoppingCartItem.id) {
           existingCartItem = tempShoppingCartItem;
           break;
         }
@@ -56,7 +56,8 @@ export class ShoppingCartService {
     let totalQuantityValue: number = 0;
 
     for (let currentShoppingCartItem of this.shoppingCartItems) {
-      totalPriceValue += currentShoppingCartItem.unitPrice;
+      totalPriceValue +=
+        currentShoppingCartItem.quantity * currentShoppingCartItem.unitPrice;
       totalQuantityValue += currentShoppingCartItem.quantity;
     }
 

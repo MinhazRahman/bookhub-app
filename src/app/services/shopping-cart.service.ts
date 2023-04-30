@@ -24,15 +24,11 @@ export class ShoppingCartService {
     let isAlreadyExistsInCart: boolean = false;
     let existingCartItem: ShoppingCartItem = undefined!;
 
-    if (this.shoppingCartItems.length > 0) {
-      // find the item in the shopping cart based on item id
-      for (let tempShoppingCartItem of this.shoppingCartItems) {
-        if (tempShoppingCartItem.id === theShoppingCartItem.id) {
-          existingCartItem = tempShoppingCartItem;
-          break;
-        }
-      }
-    }
+    // find the item in the shopping cart based on item id
+    existingCartItem = this.shoppingCartItems.find(
+      (tempShoppingCartItem) =>
+        tempShoppingCartItem.id === theShoppingCartItem.id
+    )!;
 
     // check whether we have found the given item
     isAlreadyExistsInCart = existingCartItem != undefined;

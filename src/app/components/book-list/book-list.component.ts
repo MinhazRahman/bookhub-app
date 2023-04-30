@@ -101,4 +101,13 @@ export class BookListComponent implements OnInit {
         this.theTotalElements = data.totalElements;
       });
   }
+
+  // update page size when users select from the drop down
+  updatePageSize(value: string) {
+    // convert the string to number using '+' operator
+    this.thePageSize = +value;
+    // reset the page number to 1
+    this.thePageNumber = 1;
+    this.listBooks();
+  }
 }

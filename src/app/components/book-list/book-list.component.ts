@@ -12,9 +12,15 @@ export class BookListComponent implements OnInit {
   // create books property
   books: Book[] = [];
   currentCategoryId: number = 1;
+  previousCategoryId: number = 1;
   currentCategoryName: string = '';
   searchMode: boolean = false;
   searchKeyword: string = '';
+
+  // add properties for pagination
+  thePageNumber: number = 1;
+  thePageSize: number = 5;
+  theTotalElements: number = 0;
 
   // inject BookService, ActivatedRoute
   constructor(
@@ -67,10 +73,32 @@ export class BookListComponent implements OnInit {
       this.currentCategoryName = 'Programming';
     }
 
+    // check if we have a different category than the previous one
+    // Angular will reuse a component if it is currently being viewed
+    //
+
+    // if we have a different category id than the previous one
+    // then set thePageNumber back to 1
+    if (this.previousCategoryId != this.currentCategoryId) {
+      this.thePageNumber = 1;
+    }
+
+    this.previousCategoryId = this.currentCategoryId;
+
     // get the list of books for the given 'categoryId'
     // method is invoked when we subscribe
-    this.bookService.getBookList(this.currentCategoryId).subscribe((data) => {
-      this.books = data; // assign results to the books array
-    });
+    // Pagination component: pages are 1 based
+    // Spring Data REST: pages are 0 based
+    this.bookService
+      .getBookListPaginate(
+        this.thePageNumber - 1,
+        this.thePageSize,
+        this.currentCategoryId
+      )
+      .subscribe((data) => {
+        this.books = data.content;
+        (this.thePageNumber = data.number + 1), (this.thePageSize = data.size);
+        this.theTotalElements = data.totalElements;
+      });
   }
 }

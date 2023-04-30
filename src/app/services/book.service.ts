@@ -43,6 +43,17 @@ export class BookService {
     return this.getBooks(searchUrl);
   }
 
+  // Add pagination support to book service
+  searchBooksPaginate(
+    thePageNumber: number,
+    thePageSize: number,
+    theKeyword: string
+  ): Observable<GetResponseBooks> {
+    // build the URL based on categoryId
+    const searchUrl = `${this.baseUrl}/findByNameContaining/${theKeyword}?page=${thePageNumber}&size=${thePageSize}`;
+    return this.httpClient.get<GetResponseBooks>(searchUrl);
+  }
+
   // extract Books from JSON response
   private getBooks(searchUrl: string): Observable<Book[]> {
     return this.httpClient

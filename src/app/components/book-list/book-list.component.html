@@ -42,7 +42,7 @@
           No Books found
         </div>
       </div>
-      <!-- start footer -->
+      <!-- start footer, pagination options-->
       <div class="footer-pagination">
         <div class="row">
           <div class="col-md-6"></div>
@@ -58,6 +58,18 @@
                 >
                 </ngb-pagination>
               </div>
+              <!-- start drop-down option -->
+              <div class="col-md-3 mt-2" style="text-align: right">
+                <span class="mr-2"> Page size</span>
+                <select #pageSelector (change) ="updatePageSize(pageSelector.value)">
+                  <option>2</option>
+                  <option selected="true">5</option>
+                  <option>10</option>
+                  <option>25</option>
+                  <option>50</option>
+                </select>
+              </div>
+              <!-- end, drop-down option -->
             </div>
           </div>
         </div>

@@ -36,4 +36,9 @@ export class ShoppingCartDetailsComponent implements OnInit {
     // calculate shopping cart total price and quantity
     this.shoppingCartService.calculateShoppingCartTotals();
   }
+
+  // increment the quantity of the item when user clicks on the increment button on the shopping cart
+  incrementQuantity(theShoppingCartItem: ShoppingCartItem) {
+    this.shoppingCartService.addToShoppingCart(theShoppingCartItem);
+  }
 }

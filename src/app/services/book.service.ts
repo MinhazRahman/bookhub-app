@@ -12,6 +12,17 @@ export class BookService {
   // inject HttpClient
   constructor(private httpClient: HttpClient) {}
 
+  // Add pagination support to book service
+  getBookListPaginate(
+    thePageNumber: number,
+    thePageSize: number,
+    theCategoryId: number
+  ): Observable<GetResponseBooks> {
+    // build the URL based on categoryId
+    const searchUrl = `${this.baseUrl}/findByCategoryId/${theCategoryId}?page=${thePageNumber}&size=${thePageSize}`;
+    return this.httpClient.get<GetResponseBooks>(searchUrl);
+  }
+
   // Maps the JSON data from Spring Data REST to Book array
   // get the list of books for given 'categoryId'
   getBookList(theCategoryId: number): Observable<Book[]> {

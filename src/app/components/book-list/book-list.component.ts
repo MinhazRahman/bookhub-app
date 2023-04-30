@@ -126,4 +126,9 @@ export class BookListComponent implements OnInit {
       this.theTotalElements = data.totalElements;
     };
   }
+
+  addToCart(theBook: Book) {
+    console.log(`Adding Book to cart.. ${theBook.name}: ${theBook.unitPrice}`);
+    // Add actual code later....
+  }
 }

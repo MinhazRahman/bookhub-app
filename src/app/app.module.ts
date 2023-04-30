@@ -11,6 +11,7 @@ import { SearchComponent } from './components/search/search.component';
 import { BookDetailsComponent } from './components/book-details/book-details.component'; // CLI imports router
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ShoppingCartStatusComponent } from './components/shopping-cart-status/shopping-cart-status.component';
 
 // sets up routes constant where you define your routes
 // when path matches it creates new instance of component
@@ -32,6 +33,7 @@ const routes: Routes = [
     BookCategoryMenuComponent,
     SearchComponent,
     BookDetailsComponent,
+    ShoppingCartStatusComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),

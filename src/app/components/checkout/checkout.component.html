@@ -5,7 +5,7 @@
       <form [formGroup]="checkoutFormGroup" (ngSubmit)="onSubmit()">
         <!-- start customer form group -->
         <div formGroupName="customer" class="form-area">
-          <h3>Customer</h3>
+          <h3>Customer Info</h3>
 
           <div class="row">
             <div class="col-md-2"><label>First Name</label></div>
@@ -159,8 +159,8 @@
         <!-- end billing address form group -->
 
         <!-- start credit card form group -->
-        <div formGroupName="creditCard" class="form-area">
-          <h3>Credit Card</h3>
+        <div formGroupName="paymentMethod" class="form-area">
+          <h3>Payment Method</h3>
 
           <div class="row">
             <div class="col-md-2"><label>Card Type</label></div>
@@ -223,6 +223,14 @@
           </div>
         </div>
         <!-- end credit card form group -->
+
+        <!-- Order review section -->
+        <div class="form-area">
+          <h3>Review Your Order</h3>
+          <p>Total Quantity: {{ totalQuantity }}</p>
+          <p>Shipping Cost: {{ 0 | currency : "USD" }}</p>
+          <p>Total Price: {{ totalPrice | currency : "USD" }}</p>
+        </div>
 
         <!-- submit button-->
         <div class="text-center">

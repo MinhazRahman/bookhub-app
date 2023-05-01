@@ -10,6 +10,9 @@ export class CheckoutComponent implements OnInit {
   // declare form group
   checkoutFormGroup!: FormGroup;
 
+  totalPrice: number = 0;
+  totalQuantity: number = 0;
+
   // inject the form builder
   constructor(private formBuilder: FormBuilder) {}
 
@@ -38,7 +41,7 @@ export class CheckoutComponent implements OnInit {
         zipCode: [''],
       }),
 
-      creditCard: this.formBuilder.group({
+      paymentMethod: this.formBuilder.group({
         cardType: [''],
         nameOnCard: [''],
         cardNumber: [''],

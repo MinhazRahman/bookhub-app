@@ -72,6 +72,7 @@
             <td colspan="2"></td>
             <td style="font-weight: bold">
               <p>Total Quantity: {{ totalQuantity }}</p>
+              <p>Shipping Cost: {{ 0 | currency : "USD" }}</p>
               <p>Total Price: {{ totalPrice | currency : "USD" }}</p>
               <!-- add check out button and link it to CheckoutComponent using the '/checkout' router link-->
               <div>

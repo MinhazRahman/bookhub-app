@@ -48,7 +48,7 @@ export class CheckoutComponent implements OnInit {
         zipCode: [''],
       }),
 
-      paymentMethod: this.formBuilder.group({
+      payWithCard: this.formBuilder.group({
         cardType: [''],
         nameOnCard: [''],
         cardNumber: [''],

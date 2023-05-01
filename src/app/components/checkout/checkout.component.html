@@ -204,7 +204,7 @@
             <div class="col-md-2"><label>Expiration Month</label></div>
             <div class="col-md-9">
               <div class="input-space">
-                <select formControlName="expirationMonth" type="text">
+                <select formControlName="expirationMonth">
                   <!-- iterate over the creditCardMonths declared in the component to populate 
                   the dropdown list
                   -->
@@ -223,7 +223,7 @@
                 <!-- iterate over the creditCardYears declared in the component to populate 
                   the dropdown list
                   -->
-                <select formControlName="expirationYear" type="text">
+                <select formControlName="expirationYear" (change)="handleMonthsAndYears()">
                   <option *ngFor="let year of creditCardYears">
                     {{ year }}
                   </option>

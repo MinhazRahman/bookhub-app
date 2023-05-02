@@ -76,11 +76,23 @@ export class CheckoutComponent implements OnInit {
       }),
 
       billingAddress: this.formBuilder.group({
-        country: [''],
-        street: [''],
-        city: [''],
-        state: [''],
-        zipCode: [''],
+        country: new FormControl('', [Validators.required]),
+        street: new FormControl('', [
+          Validators.required,
+          Validators.minLength(2),
+          UtilityFormValidator.notOnlyWhitespace,
+        ]),
+        city: new FormControl('', [
+          Validators.required,
+          Validators.minLength(2),
+          UtilityFormValidator.notOnlyWhitespace,
+        ]),
+        state: new FormControl('', [Validators.required]),
+        zipCode: new FormControl('', [
+          Validators.required,
+          Validators.minLength(5),
+          UtilityFormValidator.notOnlyWhitespace,
+        ]),
       }),
 
       payWithCard: this.formBuilder.group({
@@ -150,6 +162,22 @@ export class CheckoutComponent implements OnInit {
   }
   get shippingAddressZipCode() {
     return this.checkoutFormGroup.get('shippingAddress.zipCode');
+  }
+
+  get billingAddressCountry() {
+    return this.checkoutFormGroup.get('billingAddress.country');
+  }
+  get billingAddressStreet() {
+    return this.checkoutFormGroup.get('billingAddress.street');
+  }
+  get billingAddressCity() {
+    return this.checkoutFormGroup.get('billingAddress.city');
+  }
+  get billingAddressState() {
+    return this.checkoutFormGroup.get('billingAddress.state');
+  }
+  get billingAddressZipCode() {
+    return this.checkoutFormGroup.get('billingAddress.zipCode');
   }
 
   // when customer mark the check box on the Form

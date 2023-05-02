@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Country } from 'src/app/common/country';
 import { State } from 'src/app/common/state';
+import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { UtilityFormService } from 'src/app/services/utility-form.service';
 import { UtilityFormValidator } from 'src/app/validators/utility-form-validator';
 
@@ -32,7 +33,8 @@ export class CheckoutComponent implements OnInit {
   // inject the form builder
   constructor(
     private formBuilder: FormBuilder,
-    private utilityFormService: UtilityFormService
+    private utilityFormService: UtilityFormService,
+    private shoppingCardService: ShoppingCartService
   ) {}
 
   ngOnInit(): void {

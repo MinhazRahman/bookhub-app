@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Country } from 'src/app/common/country';
+import { State } from 'src/app/common/state';
 import { UtilityFormService } from 'src/app/services/utility-form.service';
 
 @Component({
@@ -19,6 +20,8 @@ export class CheckoutComponent implements OnInit {
   creditCardYears: number[] = [];
 
   countries: Country[] = [];
+  shippingAddressStates: State[] = [];
+  billingAddressStates: State[] = [];
 
   // inject the form builder
   constructor(
@@ -118,5 +121,24 @@ export class CheckoutComponent implements OnInit {
     this.utilityFormService
       .getCreditCardMonths(startMonth)
       .subscribe((data) => (this.creditCardMonths = data));
+  }
+
+  // retrieve the states based on the country selected on the HTML form template
+  getStates(theFormGroupName: string) {
+    const theFormGroup = this.checkoutFormGroup.get(theFormGroupName);
+
+    const countryCode = theFormGroup?.value.country.code;
+    const countryName = theFormGroup?.value.country.name;
+
+    this.utilityFormService.getStates(countryCode).subscribe((data) => {
+      if (theFormGroupName === 'shippingAddress') {
+        this.shippingAddressStates = data;
+      } else {
+        this.billingAddressStates = data;
+      }
+
+      // select the first state by default
+      theFormGroup?.get('state')?.setValue(data[0]);
+    });
   }
 }

@@ -48,7 +48,7 @@ export class UtilityFormService {
   // get the list of States by country code
   getStates(theCountryCode: string): Observable<State[]> {
     // build the url to get the list of states by country code
-    const searchStatesUrl = `${this.statesUrl}//findByCountryCode/${theCountryCode}`;
+    const searchStatesUrl = `${this.statesUrl}/findByCountryCode/${theCountryCode}`;
     return this.httpClient.get<State[]>(searchStatesUrl);
   }
 }

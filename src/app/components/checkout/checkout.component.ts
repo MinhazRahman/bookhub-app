@@ -8,6 +8,7 @@ import {
 import { Country } from 'src/app/common/country';
 import { State } from 'src/app/common/state';
 import { UtilityFormService } from 'src/app/services/utility-form.service';
+import { UtilityFormValidator } from 'src/app/validators/utility-form-validator';
 
 @Component({
   selector: 'app-checkout',
@@ -41,10 +42,12 @@ export class CheckoutComponent implements OnInit {
         firstName: new FormControl('', [
           Validators.required,
           Validators.minLength(2),
+          UtilityFormValidator.notOnlyWhitespace,
         ]),
         lastName: new FormControl('', [
           Validators.required,
           Validators.minLength(2),
+          UtilityFormValidator.notOnlyWhitespace,
         ]),
         email: new FormControl('', [
           Validators.required,

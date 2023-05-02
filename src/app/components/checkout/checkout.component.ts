@@ -96,8 +96,13 @@ export class CheckoutComponent implements OnInit {
       this.checkoutFormGroup.controls['billingAddress'].setValue(
         this.checkoutFormGroup.controls['shippingAddress'].value
       );
+
+      // copy shippingAddressStates to billingAddressStates array
+      this.billingAddressStates = this.shippingAddressStates;
     } else {
       this.checkoutFormGroup.controls['billingAddress'].reset();
+      // reset the billingAddressStates
+      this.billingAddressStates = [];
     }
   }
 

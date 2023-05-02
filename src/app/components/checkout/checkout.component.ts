@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Country } from 'src/app/common/country';
 import { State } from 'src/app/common/state';
 import { UtilityFormService } from 'src/app/services/utility-form.service';
@@ -33,15 +38,15 @@ export class CheckoutComponent implements OnInit {
     // build the form
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
-        firstName: new FormGroup('', [
+        firstName: new FormControl('', [
           Validators.required,
           Validators.minLength(2),
         ]),
-        lastName: new FormGroup('', [
+        lastName: new FormControl('', [
           Validators.required,
           Validators.minLength(2),
         ]),
-        email: new FormGroup('', [
+        email: new FormControl('', [
           Validators.required,
           Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
         ]),
@@ -94,6 +99,11 @@ export class CheckoutComponent implements OnInit {
 
   onSubmit() {
     console.log('Handling customer form data..');
+    // touching all fields triggers the display of error messages
+    if (this.checkoutFormGroup.invalid) {
+      this.checkoutFormGroup.markAllAsTouched();
+    }
+
     console.log(this.checkoutFormGroup.get('customer')?.value);
     console.log(this.checkoutFormGroup.get('customer')?.value.email);
   }

@@ -96,10 +96,13 @@ export class CheckoutComponent implements OnInit {
       }),
 
       payWithCard: this.formBuilder.group({
-        cardType: new FormControl('', [Validators.required]),
+        cardType: new FormControl('', [
+          Validators.required,
+          UtilityFormValidator.notOnlyWhitespace,
+        ]),
         nameOnCard: new FormControl('', [
           Validators.required,
-          Validators.minLength(5),
+          Validators.minLength(2),
           UtilityFormValidator.notOnlyWhitespace,
         ]),
         cardNumber: new FormControl('', [

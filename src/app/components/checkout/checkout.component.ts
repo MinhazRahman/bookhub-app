@@ -136,6 +136,22 @@ export class CheckoutComponent implements OnInit {
     return this.checkoutFormGroup.get('customer.email');
   }
 
+  get shippingAddressCountry() {
+    return this.checkoutFormGroup.get('shippingAddress.country');
+  }
+  get shippingAddressStreet() {
+    return this.checkoutFormGroup.get('shippingAddress.street');
+  }
+  get shippingAddressCity() {
+    return this.checkoutFormGroup.get('shippingAddress.city');
+  }
+  get shippingAddressState() {
+    return this.checkoutFormGroup.get('shippingAddress.state');
+  }
+  get shippingAddressZipCode() {
+    return this.checkoutFormGroup.get('shippingAddress.zipCode');
+  }
+
   // when customer mark the check box on the Form
   copyShippingAddressToBillingAddress(event: Event) {
     const isChecked = (<HTMLInputElement>event.target).checked;

@@ -96,10 +96,22 @@ export class CheckoutComponent implements OnInit {
       }),
 
       payWithCard: this.formBuilder.group({
-        cardType: [''],
-        nameOnCard: [''],
-        cardNumber: [''],
-        securityCode: [''],
+        cardType: new FormControl('', [Validators.required]),
+        nameOnCard: new FormControl('', [
+          Validators.required,
+          Validators.minLength(5),
+          UtilityFormValidator.notOnlyWhitespace,
+        ]),
+        cardNumber: new FormControl('', [
+          Validators.required,
+          Validators.pattern('[0-9]{16}'),
+          UtilityFormValidator.notOnlyWhitespace,
+        ]),
+        securityCode: new FormControl('', [
+          Validators.required,
+          Validators.pattern('[0-9]{3}'),
+          UtilityFormValidator.notOnlyWhitespace,
+        ]),
         expirationMonth: [''],
         expirationYear: [''],
       }),
@@ -178,6 +190,30 @@ export class CheckoutComponent implements OnInit {
   }
   get billingAddressZipCode() {
     return this.checkoutFormGroup.get('billingAddress.zipCode');
+  }
+
+  get payWithCardCardType() {
+    return this.checkoutFormGroup.get('payWithCard.cardType');
+  }
+
+  get payWithCardNameOnCard() {
+    return this.checkoutFormGroup.get('payWithCard.nameOnCard');
+  }
+
+  get payWithCardCardNumber() {
+    return this.checkoutFormGroup.get('payWithCard.cardNumber');
+  }
+
+  get payWithCardSecurityCode() {
+    return this.checkoutFormGroup.get('payWithCard.securityCode');
+  }
+
+  get payWithCardExpirationMonth() {
+    return this.checkoutFormGroup.get('payWithCard.expirationMonth');
+  }
+
+  get payWithCardExpirationYear() {
+    return this.checkoutFormGroup.get('payWithCard.expirationYear');
   }
 
   // when customer mark the check box on the Form

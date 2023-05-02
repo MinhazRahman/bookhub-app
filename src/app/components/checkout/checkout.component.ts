@@ -56,11 +56,23 @@ export class CheckoutComponent implements OnInit {
       }),
 
       shippingAddress: this.formBuilder.group({
-        country: [''],
-        street: [''],
-        city: [''],
-        state: [''],
-        zipCode: [''],
+        country: new FormControl('', [Validators.required]),
+        street: new FormControl('', [
+          Validators.required,
+          Validators.minLength(2),
+          UtilityFormValidator.notOnlyWhitespace,
+        ]),
+        city: new FormControl('', [
+          Validators.required,
+          Validators.minLength(2),
+          UtilityFormValidator.notOnlyWhitespace,
+        ]),
+        state: new FormControl('', [Validators.required]),
+        zipCode: new FormControl('', [
+          Validators.required,
+          Validators.minLength(2),
+          UtilityFormValidator.notOnlyWhitespace,
+        ]),
       }),
 
       billingAddress: this.formBuilder.group({

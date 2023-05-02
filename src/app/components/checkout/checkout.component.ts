@@ -34,10 +34,13 @@ export class CheckoutComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private utilityFormService: UtilityFormService,
-    private shoppingCardService: ShoppingCartService
+    private shoppingCartService: ShoppingCartService
   ) {}
 
   ngOnInit(): void {
+    // get the totalPrice and totalQuantity
+    this.reviewShoppingCartDetails();
+
     // build the form
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
@@ -139,6 +142,17 @@ export class CheckoutComponent implements OnInit {
     this.utilityFormService
       .getCountries()
       .subscribe((data) => (this.countries = data));
+  }
+
+  reviewShoppingCartDetails() {
+    // subscribe to totalPrice
+    this.shoppingCartService.totalPrice.subscribe(
+      (totalQuantity) => (this.totalPrice = totalQuantity)
+    );
+    // subscribe to totalQuantity
+    this.shoppingCartService.totalQuantity.subscribe(
+      (totalQuantity) => (this.totalQuantity = totalQuantity)
+    );
   }
 
   onSubmit() {

@@ -70,7 +70,7 @@ export class CheckoutComponent implements OnInit {
         state: new FormControl('', [Validators.required]),
         zipCode: new FormControl('', [
           Validators.required,
-          Validators.minLength(2),
+          Validators.minLength(5),
           UtilityFormValidator.notOnlyWhitespace,
         ]),
       }),

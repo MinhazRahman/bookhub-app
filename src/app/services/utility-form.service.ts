@@ -1,11 +1,17 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { Country } from '../common/country';
+import { State } from '../common/state';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UtilityFormService {
-  constructor() {}
+  private countriesUrl = 'http://localhost:8080/bookhub/countries';
+  private statesUrl = 'http://localhost:8080/bookhub/states';
+
+  constructor(private httpClient: HttpClient) {}
 
   getCreditCardMonths(startMonth: number): Observable<number[]> {
     let data: number[] = [];
@@ -33,5 +39,16 @@ export class UtilityFormService {
     }
 
     return of(data);
+  }
+
+  getCountries(): Observable<Country[]> {
+    return this.httpClient.get<Country[]>(this.countriesUrl);
+  }
+
+  // get the list of States by country code
+  getStates(theCountryCode: string): Observable<State[]> {
+    // build the url to get the list of states by country code
+    const searchStatesUrl = `${this.statesUrl}//findByCountryCode/${theCountryCode}`;
+    return this.httpClient.get<State[]>(searchStatesUrl);
   }
 }

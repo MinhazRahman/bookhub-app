@@ -15,6 +15,7 @@ import { ShoppingCartStatusComponent } from './components/shopping-cart-status/s
 import { ShoppingCartDetailsComponent } from './components/shopping-cart-details/shopping-cart-details.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
 
 // sets up routes constant where you define your routes
 // when path matches it creates new instance of component
@@ -41,6 +42,7 @@ const routes: Routes = [
     ShoppingCartStatusComponent,
     ShoppingCartDetailsComponent,
     CheckoutComponent,
+    LoginComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),

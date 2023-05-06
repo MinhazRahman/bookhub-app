@@ -17,7 +17,20 @@ export class ShoppingCartService {
   totalPrice: Subject<number> = new BehaviorSubject<number>(0); // give initial value of 0
   totalQuantity: Subject<number> = new BehaviorSubject<number>(0);
 
-  constructor() {}
+  // Create an Storage object that refers to web browser's session storage
+  storage: Storage = sessionStorage;
+
+  constructor() {
+    // read the data from the storage
+    // Here, 'shoppingCartItems' is the key, we can use any name
+    let data = JSON.parse(this.storage.getItem('shoppingCartItems')!);
+    if (data != null) {
+      this.shoppingCartItems = data;
+
+      // compute the totals based on the data that we got from the storage
+      this.calculateShoppingCartTotals();
+    }
+  }
 
   addToShoppingCart(theShoppingCartItem: ShoppingCartItem) {
     // check if we already have the item in our shopping cart
@@ -60,6 +73,14 @@ export class ShoppingCartService {
     // publish the updated values to all the subscribers
     this.totalPrice.next(totalPriceValue);
     this.totalQuantity.next(totalQuantityValue);
+  }
+
+  persistShoppingCartItems() {
+    // here 'shoppingCartItems' is the key
+    this.storage.setItem(
+      'shoppingCartItems',
+      JSON.stringify(this.shoppingCartItems)
+    );
   }
 
   decrementQuantity(theShoppingCartItem: ShoppingCartItem) {

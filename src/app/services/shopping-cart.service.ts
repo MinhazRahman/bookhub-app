@@ -18,7 +18,12 @@ export class ShoppingCartService {
   totalQuantity: Subject<number> = new BehaviorSubject<number>(0);
 
   // Create an Storage object that refers to web browser's session storage
-  storage: Storage = sessionStorage;
+  // data will persist as long as we don't close the browser's tab
+  //storage: Storage = sessionStorage;
+
+  // Create an Storage object that refers to web browser's local storage
+  // data will persist even if we close the browser's tab
+  storage: Storage = localStorage;
 
   constructor() {
     // read the data from the storage
@@ -73,6 +78,9 @@ export class ShoppingCartService {
     // publish the updated values to all the subscribers
     this.totalPrice.next(totalPriceValue);
     this.totalQuantity.next(totalQuantityValue);
+
+    // persist shopping cart totals
+    this.persistShoppingCartItems();
   }
 
   persistShoppingCartItems() {

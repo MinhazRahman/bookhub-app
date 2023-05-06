@@ -24,6 +24,7 @@ import { OktaAuthModule } from '@okta/okta-angular';
 
 import { OktaAuth } from '@okta/okta-auth-js';
 import appConfig from './config/app-config';
+import { CustomerAccountsPageComponent } from './components/customer-accounts-page/customer-accounts-page.component';
 
 const oktaConfig = appConfig.oidc;
 const oktaAuth = new OktaAuth(oktaConfig);
@@ -58,6 +59,7 @@ const routes: Routes = [
     CheckoutComponent,
     LoginComponent,
     LoginStatusComponent,
+    CustomerAccountsPageComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),

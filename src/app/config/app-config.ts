@@ -9,8 +9,8 @@ email: user's email address
 */
 export default {
   oidc: {
-    clientId: '0oa9ev4ogbK3S0XUe5d7',
-    issuer: 'https://dev-81568508.okta.com/oauth2/default',
+    clientId: '0oa9f97k1iE3MeNvs5d7',
+    issuer: 'https://dev-28014861.okta.com/oauth2/default',
     redirectUri: 'http://localhost:4200/login/callback',
     scopes: ['openid', 'profile', 'email'],
   },

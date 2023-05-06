@@ -260,6 +260,15 @@ input.au-input.au-input-xl {
     margin-left: 15px
 }
 
+.cart-area i:hover{
+    color: #05143f
+}
+
+
+.total:hover{
+    background: #05143f
+}
+
 .total {
     background: #205b8d;
     line-height: 43px;
@@ -279,6 +288,10 @@ input.au-input.au-input-xl {
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     margin-left: 11px
+}
+
+.total:hover {
+    background: #05143f
 }
 
 .form-header {
@@ -1150,6 +1163,10 @@ footer ul li {
         float: left;
         margin-top: 9px;
         padding-left: 12px
+    }
+
+    .total:hover{
+
     }
 
     .header-mobile .header-mobile-bar {

@@ -1,4 +1,23 @@
-# BookhubApp
+# *BookHubApp*
+
+**BookHubApp** is a web application that allows users to buy books online.Users of the system: visitors/browsers, registered customers, store clerks, store managers/super-users.
+
+## Main features of the system
+
+* [x] The online store has a home page showing the lists of books
+* [x] The system provides different categories for the books.
+* [x] A visitor can browse the listings of the books and discussion forums
+* [ ] A visitor can apply to be a registered customer with a unique working email address.
+* [ ] A registered customer must provide a working credit card or deposit money to the account for possible purchase.
+* [ ] A registered customer can browse the system, make purchase options, search info.
+* [ ] Authenticated users can browse his/her own private purchasing history/expenses, comments and (start) votes on the items s/he purchased already.
+
+## Video Walkthrough
+
+<img src='walkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.6.
 

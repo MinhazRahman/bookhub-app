@@ -18,6 +18,10 @@
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
+## Notes
+
+Describe any challenges encountered while building the app.
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.6.
 

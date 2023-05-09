@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Order } from '../common/order';
+import { OrderHistory } from '../common/order-history';
 
 @Injectable({
   providedIn: 'root',
@@ -20,5 +21,5 @@ export class OrderHistoryService {
 
 // extract the JSON array from the Spring data REST json response
 interface GetResponseOrderHistory {
-  content: Order[];
+  content: OrderHistory[];
 }

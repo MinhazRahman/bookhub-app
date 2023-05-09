@@ -6,12 +6,14 @@
       <div *ngIf="orderHistoryList.length > 0">
         <table class="table table-bordered">
           <tr>
+            <th width="2%">SL</th>
             <th width="20%">Order Tracking Number</th>
             <th width="10%">Total Price</th>
-            <th width="10%">Total Quantity</th>
+            <th width="8%">Total Quantity</th>
             <th width="10%">Date</th>
           </tr>
-          <tr *ngFor="let tempOrderHistoryList of orderHistoryList">
+          <tr *ngFor="let tempOrderHistoryList of orderHistoryList; let i = index">
+            <td>{{ i + 1 }}</td>
             <td>{{ tempOrderHistoryList.orderTrackingNumber }}</td>
             <td>{{ tempOrderHistoryList.totalPrice | currency : "USD" }}</td>
             <td>{{ tempOrderHistoryList.totalQuantity }}</td>
@@ -21,8 +23,12 @@
       </div>
 
       <!-- if order history is empty then display a message -->
-      <div *ngIf="orderHistoryList.length == 0" class="alert alert-wanring col-md-12" role="alert">
-            Yo don't have any orders right now!
+      <div
+        *ngIf="orderHistoryList.length == 0"
+        class="alert alert-wanring col-md-12"
+        role="alert"
+      >
+        Yo don't have any orders right now!
       </div>
     </div>
   </div>

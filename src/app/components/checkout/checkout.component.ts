@@ -35,6 +35,9 @@ export class CheckoutComponent implements OnInit {
   shippingAddressStates: State[] = [];
   billingAddressStates: State[] = [];
 
+  // storage refers to the browser's session storage
+  storage: Storage = sessionStorage;
+
   // inject the form builder
   constructor(
     private formBuilder: FormBuilder,
@@ -47,6 +50,9 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     // get the totalPrice and totalQuantity
     this.reviewShoppingCartDetails();
+
+    // retrieve the user's email address from the browser's storage
+    const userEmail: string = JSON.parse(this.storage.getItem('userEmail')!);
 
     // build the form
     this.checkoutFormGroup = this.formBuilder.group({
@@ -61,7 +67,7 @@ export class CheckoutComponent implements OnInit {
           Validators.minLength(2),
           UtilityFormValidator.notOnlyWhitespace,
         ]),
-        email: new FormControl('', [
+        email: new FormControl(userEmail, [
           Validators.required,
           Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
         ]),

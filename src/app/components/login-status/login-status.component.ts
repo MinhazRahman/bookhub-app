@@ -13,6 +13,9 @@ export class LoginStatusComponent implements OnInit {
   userGivenName: string = '';
   userFamilyName: string = '';
 
+  // storage refers to the web browser's session storage
+  storage: Storage = sessionStorage;
+
   // inject OktaAuthStateService
   constructor(
     private oktaAuthService: OktaAuthStateService,
@@ -34,6 +37,12 @@ export class LoginStatusComponent implements OnInit {
       this.userFullName = result.name as string;
       this.userGivenName = result.given_name as string;
       this.userFamilyName = result.family_name as string;
+
+      // retrieve the user's email from authentication response
+      const userEmail = result.email;
+
+      // store the email in browser's storage
+      this.storage.setItem('userEmail', JSON.stringify(userEmail));
     });
   }
 

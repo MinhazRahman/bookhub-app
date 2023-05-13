@@ -15,6 +15,6 @@ export class SearchComponent implements OnInit {
   // route the data to the 'search' route
   // it will be handled by BookListComponent
   searchBook(value: string) {
-    this.router.navigateByUrl(`/search/${value}`);
+    this.router.navigateByUrl(`/search/${value.trim().replace(/([^\w ]|_.)/g, '')}`);
   }
 }

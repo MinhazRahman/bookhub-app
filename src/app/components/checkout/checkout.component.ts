@@ -238,6 +238,9 @@ export class CheckoutComponent implements OnInit {
 
         // reset the shopping cart
         this.resetShoppingCart();
+
+        // clear browser local storage
+        localStorage.removeItem('shoppingCartItems');
       },
       error: (err) => {
         alert(`There was an error: ${err.message}`);

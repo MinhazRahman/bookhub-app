@@ -14,8 +14,16 @@
 
 ## Video Walkthrough
 
-<img src='walkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+## Homepage
+<img src='walkthrough_homepage.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
+## Search
+<img src='walkthrough_search.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+## Shopping Cart
+<img src='walkthrough_shopping_cart.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+## Login and Orders
 <img src='walkthrough_login.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).

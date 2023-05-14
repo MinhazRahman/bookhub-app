@@ -6,11 +6,15 @@
 
 * [x] The online store has a home page showing the lists of books
 * [x] The system provides different categories for the books.
-* [x] A visitor can browse the listings of the books and discussion forums
+* [x] A visitor can browse the listings of the books.
+* [x] A visitor can view the details of the books.
+* [x] A visitor can search books by name or keyword.
 * [ ] A visitor can apply to be a registered customer with a unique working email address.
+* [x] A user can add books to the shopping cart and update the shopping cart items.
+* [ ] A user can purchase books and view his/her orders.
 * [ ] A registered customer must provide a working credit card or deposit money to the account for possible purchase.
-* [ ] A registered customer can browse the system, make purchase options, search info.
-* [ ] Authenticated users can browse his/her own private purchasing history/expenses, comments and (start) votes on the items s/he purchased already.
+* [ ] A registered customer can browse the system, make purchase options, and search info.
+* [ ] A user can browse his/her purchasing history, comments and (start) votes on the items he/she already purchased.
 
 ## Video Walkthrough
 

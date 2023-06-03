@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Order } from '../common/order';
 import { OrderHistory } from '../common/order-history';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrderHistoryService {
-  private orderUrl = 'http://localhost:8080/bookhub/orders';
+  private orderUrl = environment.bookHubApiUrl + '/orders';
 
   constructor(private httpClient: HttpClient) {}
 

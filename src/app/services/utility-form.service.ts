@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Country } from '../common/country';
 import { State } from '../common/state';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UtilityFormService {
-  private countriesUrl = 'http://localhost:8080/bookhub/countries';
-  private statesUrl = 'http://localhost:8080/bookhub/states';
+  private countriesUrl = environment.bookHubApiUrl + '/countries';
+  private statesUrl = environment.bookHubApiUrl + '/states';
 
   constructor(private httpClient: HttpClient) {}
 

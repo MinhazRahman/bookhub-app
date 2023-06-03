@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Book } from '../common/book';
 import { BookCategory } from '../common/book-category';
+import { environment } from 'src/environments/environment.development';
 @Injectable({
   providedIn: 'root',
 })
 export class BookService {
-  private baseUrl = 'http://localhost:8080/bookhub/books';
-  private categoryUrl = 'http://localhost:8080/bookhub/bookCategories';
+  private baseUrl = environment.bookHubApiUrl + '/books';
+  private categoryUrl = environment.bookHubApiUrl + '/bookCategories';
   // inject HttpClient
   constructor(private httpClient: HttpClient) {}
 

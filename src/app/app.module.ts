@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BookListComponent } from './components/book-list/book-list.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BookService } from './services/book.service';
 import { Routes, RouterModule, Router } from '@angular/router';
 import { BookCategoryMenuComponent } from './components/book-category-menu/book-category-menu.component';
@@ -30,6 +30,7 @@ import { OktaAuth } from '@okta/okta-auth-js';
 import appConfig from './config/app-config';
 import { CustomerAccountsPageComponent } from './components/customer-accounts-page/customer-accounts-page.component';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 const oktaConfig = appConfig.oidc;
 const oktaAuth = new OktaAuth(oktaConfig);
@@ -102,7 +103,15 @@ const routes: Routes = [
     ReactiveFormsModule,
     OktaAuthModule,
   ],
-  providers: [BookService, { provide: OKTA_CONFIG, useValue: { oktaAuth } }],
+  providers: [
+    BookService,
+    { provide: OKTA_CONFIG, useValue: { oktaAuth } },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

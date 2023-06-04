@@ -9,12 +9,14 @@ import { Router } from '@angular/router';
 import { Country } from 'src/app/common/country';
 import { Order } from 'src/app/common/order';
 import { OrderItem } from 'src/app/common/order-item';
+import { PaymentInfo } from 'src/app/common/payment-info';
 import { Purchase } from 'src/app/common/purchase';
 import { State } from 'src/app/common/state';
 import { CheckoutService } from 'src/app/services/checkout.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { UtilityFormService } from 'src/app/services/utility-form.service';
 import { UtilityFormValidator } from 'src/app/validators/utility-form-validator';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-checkout',
@@ -38,6 +40,13 @@ export class CheckoutComponent implements OnInit {
   // storage refers to the browser's session storage
   storage: Storage = sessionStorage;
 
+  // initialize Stripe API
+  stripe = Stripe(environment.stripePublishableKey);
+
+  paymentInfo: PaymentInfo = new PaymentInfo();
+  cardElement: any;
+  displayError: any = '';
+
   // inject the form builder
   constructor(
     private formBuilder: FormBuilder,
@@ -48,6 +57,9 @@ export class CheckoutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // set up Stripe payment form
+    this.setupStripePaymentForm();
+
     // get the totalPrice and totalQuantity
     this.reviewShoppingCartDetails();
 
@@ -114,6 +126,7 @@ export class CheckoutComponent implements OnInit {
       }),
 
       payWithCard: this.formBuilder.group({
+        /*
         cardType: new FormControl('', [
           Validators.required,
           UtilityFormValidator.notOnlyWhitespace,
@@ -135,10 +148,12 @@ export class CheckoutComponent implements OnInit {
         ]),
         expirationMonth: [''],
         expirationYear: [''],
+        */
       }),
     });
 
     // populate credit card months
+    /*
     const startMonth: number = new Date().getMonth() + 1; // months are 0-based that's why add 1 to the month
     // call getCreditCardMonths() method, subscribe to the call and initialize creditCardMonths
     this.utilityFormService
@@ -150,11 +165,36 @@ export class CheckoutComponent implements OnInit {
     this.utilityFormService
       .getCreditCardYears()
       .subscribe((data) => (this.creditCardYears = data));
+    */
 
     // populate the countries when form is initially loaded
     this.utilityFormService
       .getCountries()
       .subscribe((data) => (this.countries = data));
+  }
+
+  setupStripePaymentForm() {
+    // get a handle to stripe elements
+    let elements = this.stripe.elements();
+
+    // create a card element and hide the zip code field
+    this.cardElement = elements.create('card', { hidePostalCode: true });
+
+    // add and instance of card UI component into the 'card-element' div
+    this.cardElement.mount('#card-element');
+
+    // add event binding for the 'change' event on the card element
+    this.cardElement.on('change', (event: any) => {
+      // get a handle to card-errors element
+      this.displayError = document.getElementById('card-errors');
+
+      if (event.complete) {
+        this.displayError.textContent = '';
+      } else if (event.error) {
+        // show the validation error to the user
+        this.displayError.textContent = event.error.message;
+      }
+    });
   }
 
   reviewShoppingCartDetails() {

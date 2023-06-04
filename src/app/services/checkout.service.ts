@@ -22,7 +22,7 @@ export class CheckoutService {
     return this.httpClient.post<Purchase>(this.purchaseUrl, purchase);
   }
 
-  createPaymentInfo(paymentInfo: PaymentInfo): Observable<any> { 
+  createPaymentIntent(paymentInfo: PaymentInfo): Observable<any> { 
     return this.httpClient.post<PaymentInfo>(this.paymentIntentUrl, paymentInfo);
   }
 }

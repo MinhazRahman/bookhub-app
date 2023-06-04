@@ -61,7 +61,16 @@
                   "with": "src/environments/environment.development.ts"
                 }
               ]
+            },
+            "qa": {
+              "fileReplacements":[
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.qa.ts"
+                }
+              ]
             }
+
           },
           "defaultConfiguration": "production"
         },
@@ -73,6 +82,9 @@
             },
             "development": {
               "browserTarget": "bookhub-app:build:development"
+            },
+            "qa":{
+              "browserTarget": "bookhub-app:build:qa"
             }
           },
           "defaultConfiguration": "development"

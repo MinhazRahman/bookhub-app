@@ -269,23 +269,57 @@ export class CheckoutComponent implements OnInit {
     // populate purchase with orderItems
     purchase.orderItems = orderItems;
 
-    // send request to the REST API through CheckoutService
-    this.checkoutService.placeOrder(purchase).subscribe({
-      next: (response) => {
-        alert(
-          `Your order has been received.\n Your order tracking number is: ${response.orderTrackingNumber}`
-        );
+    // compute payment info
+    this.paymentInfo.amount = Math.round(this.totalPrice * 100);
+    this.paymentInfo.currency = 'USD';
 
-        // reset the shopping cart
-        this.resetShoppingCart();
-
-        // clear browser local storage
-        localStorage.removeItem('shoppingCartItems');
-      },
-      error: (err) => {
-        alert(`There was an error: ${err.message}`);
-      },
-    });
+    // if valid form then
+    // - create payment intent
+    // - confirm card payment
+    // - place order
+    if (
+      !this.checkoutFormGroup.invalid &&
+      this.displayError.textContent === ''
+    ) {
+      this.checkoutService
+        .createPaymentIntent(this.paymentInfo)
+        .subscribe((paymentIntentResponse) => {
+          this.stripe
+            .confirmCardPayment(
+              paymentIntentResponse.client_secret,
+              {
+                payment_method: {
+                  // reference the Stripe Elements component: cardElement
+                  card: this.cardElement,
+                },
+              },
+              { handleActions: false }
+            )
+            .then((result: any) => {
+              if (result.error) {
+                // display the error
+                alert(`There was an error: ${result.error.message}`);
+              } else {
+                // call the REST API through the CheckoutService
+                this.checkoutService.placeOrder(purchase).subscribe({
+                  next: (response: any) => {
+                    alert(
+                      `Your order has been received. \nOrder tracking number: ${response.orderTrackingNumber}`
+                    );
+                    // reset the cart
+                    this.resetShoppingCart();
+                  },
+                  error: (err: any) => {
+                    alert(`There was an error: ${err.message}`);
+                  },
+                });
+              }
+            });
+        });
+    } else {
+      this.checkoutFormGroup.markAllAsTouched();
+      return;
+    }
   }
 
   // reset the shopping cart
@@ -294,6 +328,7 @@ export class CheckoutComponent implements OnInit {
     this.shoppingCartService.shoppingCartItems = [];
     this.shoppingCartService.totalPrice.next(0);
     this.shoppingCartService.totalQuantity.next(0);
+    this.shoppingCartService.persistShoppingCartItems();
 
     // reset the form
     this.checkoutFormGroup.reset();

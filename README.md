@@ -12,11 +12,14 @@
 * [ ] A visitor can apply to be a registered customer with a unique working email address.
 * [x] A user can add books to the shopping cart and update the shopping cart items.
 * [x] A user can purchase books and view his/her orders.
-* [ ] A registered customer must provide a working credit card or deposit money to the account for possible purchase.
+* [x] A registered customer must provide a working credit card or deposit money to the account for possible purchase.
 * [x] A registered customer can browse the system, make purchase options, and search info.
 * [x] A user can browse his/her purchasing history, comments and (start) votes on the items he/she already purchased.
 * [x] Incorporated Okta Authorization Server to facilitate user login and logout functionalities.
 * [x] Integrated Stripe payment gateway that allows users to make payments with debit/credit cards. 
+
+## Spring Boot Backend
+[BookHub - Online Bookstore](https://github.com/MinhazRahman/book-hub)
 
 ## Video Walkthrough
 
